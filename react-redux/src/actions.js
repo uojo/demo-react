@@ -8,29 +8,20 @@ export function change(value){
 }
 
 export function c1(){
-	console.log(arguments);
+		console.log("click.c1",arguments);
     return{
         type:"change"
     }
 }
 
 export function changeHandle(e){
-// console.log("1.event");
-// const node = ReactDOM.findDOMNode(this.refs.input);
-// const value = node.value.trim();
-// this.props.change(value);
-	
-  return (dispatch, getState) => {
-    //获取state对象中的counter属性值
-    /* const { value } = getState();
-	console.log( value ); */
-	
-	
-	// const 
-	console.log("-", e.currentTarget.value, dispatch,getState());
-	
+		// console.info( this ); //undefind
+  	return (dispatch, getState) => {
+
+		// const
+		console.log("-", dispatch,getState() );
+
     //没有返回就执行加一
     dispatch(change(e.currentTarget.value));
   }
 }
-
