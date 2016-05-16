@@ -25,3 +25,7 @@ export function changeHandle(e){
     dispatch(change(e.currentTarget.value));
   }
 }
+
+export function addFn1(val){
+	return {type:"add",value:val};
+}
