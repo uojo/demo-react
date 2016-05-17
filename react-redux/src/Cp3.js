@@ -1,18 +1,18 @@
 import React, { PropTypes, Component } from 'react'
 
 class Cp3 extends Component {
-  handleSave() {
-      console.log("toJSON");
+  detail(obj) {
+      console.log("detail",this.props.da);
   }
 
   render() {
-    const {items} = this.props;
+    const {da,as} = this.props;
     return (
-      <ul>
-        {items.map(it =>
-            <li key={it.id}>{it.name}</li>
-        )}
-      </ul>
+      <li>
+        <button onClick={this.detail.bind(this)}>{da.name}</button>
+        <button onClick={()=> as.it_edit(da)}>edit</button>
+        <button>x</button>
+      </li>
     )
   }
 }

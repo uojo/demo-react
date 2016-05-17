@@ -14,6 +14,15 @@ export function c1(){
     }
 }
 
+export function it_edit(val){
+		console.log("click.it.edit", val);
+    return{ type:"it_edit" }
+}
+
+export function it_del(){
+    return{ type:"it_del" }
+}
+
 export function changeHandle(e){
 		// console.info( this ); //undefind
   	return (dispatch, getState) => {

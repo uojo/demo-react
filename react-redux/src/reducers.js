@@ -10,9 +10,10 @@ export default function change(state=initD, action){
 	console.log("3.reducers", state, action);
 	switch (action.type) {
 		case "add":
+			console.log()
 			return {items:[
 				{
-					id:state.items.reduce((a,b)=>a.id+b.id),
+					id:state.items.length+1,
 					name:action.value
 				},
 				...state.items
@@ -20,6 +21,18 @@ export default function change(state=initD, action){
 			break;
 
 		case "change":
+			return Object.assign({},state,{
+				value:action.value
+			})
+			break;
+
+		case "edit":
+			return Object.assign({},state,{
+				value:action.value
+			})
+			break;
+
+		case "delete":
 			return Object.assign({},state,{
 				value:action.value
 			})

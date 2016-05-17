@@ -9,11 +9,11 @@ import * as action from './actions'
 class App extends Component {
   render() {
 	   console.log( "5.render", this.props );
-     const {propsValue,changeHandle,c1,items, addFn1} = this.props;
+     const {propsValue,items, as} = this.props;
      return (
         <div>
-          <Cp1 propsValue={propsValue} c1={c1} addFn1={addFn1} changeHandle={changeHandle}/>
-          <Cp2 items={items}/>
+          <Cp1 propsValue={propsValue} items={items} as={as} />
+          <Cp2 items={items} as={as}/>
         </div>
       )
   };
@@ -31,7 +31,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   let t1 = bindActionCreators(action, dispatch);
   console.log("*",t1);
-	return t1;
+	return {as:t1};
 }
 
 //将state的 "指定值" 映射在props上，将 action的 "所有方法" 映射在props上
