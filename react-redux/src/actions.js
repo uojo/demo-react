@@ -1,22 +1,23 @@
 //定义一个change方法，将来把它绑定到props上
-export function change(value){
-	console.log("2.actions", value);
+export function change(val){
+	console.log("2.actions", val);
     return{
         type:"change",
-        value:value
+        tVal:val
     }
 }
 
-export function c1(){
-		console.log("click.c1",arguments);
+export function it_save(val){
+	console.log("click.it_save", val);
     return{
-        type:"change"
+        type:"it_save",
+		tVal:val
     }
 }
 
-export function it_edit(val){
-		console.log("click.it.edit", val);
-    return{ type:"it_edit" }
+export function it_edit(obj){
+	console.log("click.it.edit", obj);
+    return{ type:"it_edit", tVal:obj.name, editId:obj.id };
 }
 
 export function it_del(){
@@ -36,5 +37,5 @@ export function changeHandle(e){
 }
 
 export function addFn1(val){
-	return {type:"add",value:val};
+	return {type:"add",tVal:val};
 }

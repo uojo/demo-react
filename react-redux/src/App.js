@@ -8,22 +8,24 @@ import * as action from './actions'
 
 class App extends Component {
   render() {
-	   console.log( "5.render", this.props );
-     const {propsValue,items, as} = this.props;
+	 console.log( "5.render", this.props );
+     const {tVal, items, as} = this.props;
      return (
         <div>
-          <Cp1 propsValue={propsValue} items={items} as={as} />
+          <Cp1 tVal={tVal} items={items} editId={this.props.editId} as={as} />
           <Cp2 items={items} as={as}/>
         </div>
       )
   };
 }
 
+//强reducers的return值注册到react的props上
 function mapStateToProps(state) {
 	console.log( "4.StateToProps", state );
 	return {
-		propsValue: state.value,
-    items: state.items
+		editId: state.editId,
+		tVal: state.tVal,
+		items: state.items
 	}
 }
 

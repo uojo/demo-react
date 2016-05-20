@@ -1,6 +1,7 @@
 //reducer就是个function,名字随便你起，功能就是在action触发后，返回一个新的state(就是个对象)
 const initD = {
-	value:'default',
+	editId: 0,
+	tVal:'default',
 	items:[
 		{"id":1,"name":"hello"}
 	]
@@ -10,57 +11,49 @@ export default function change(state=initD, action){
 	console.log("3.reducers", state, action);
 	switch (action.type) {
 		case "add":
-			console.log()
-			return {items:[
-				{
-					id:state.items.length+1,
-					name:action.value
-				},
-				...state.items
-			]};
+			return {
+				items:[
+					{
+						id:state.items.length+1,
+						name:action.tVal
+					},
+					...state.items
+				]
+			};
 			break;
 
+		case "it_save":
+			return Object.assign({},state,{
+				items:(state.items.map(it=>
+					// console.log(it);
+					it.id==state.editId? Object.assign( {}, it, {name:action.tVal} ) : it
+				)),
+				editId:0,
+				tVal:""
+			});
+			break;
+
+		case "it_edit":
+			return Object.assign({},state,{
+				tVal:action.tVal,
+				editId:action.editId
+			});
+			break;
+			
 		case "change":
 			return Object.assign({},state,{
-				value:action.value
-			})
+				tVal:action.tVal
+			});
 			break;
-
-		case "edit":
-			return Object.assign({},state,{
-				value:action.value
-			})
-			break;
-
+			
 		case "delete":
 			return Object.assign({},state,{
-				value:action.value
+				tVal:action.tVal
 			})
 			break;
 
 		default:
 			return state;
 	}
-	/*
-	if(action.type=="change"){
-		state.value = action.value;
-		// return state;
-		return {
-			value:action.value,
-			items:action.items
-		};
-	}
 
-	if(action.type=="add"){
-		return {items:[
-			{
-				id:state.items.reduce((a,b)=>a.id+b.id),
-				name:action.value
-			},
-			...state.items
-		]};
-	}
-
-	return ;
-	*/
 }
