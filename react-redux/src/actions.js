@@ -8,6 +8,7 @@ export function change(val){
 }
 
 export function it_save(val){
+	// val:Object
 	console.log("click.it_save", val);
     return{
         type:"it_save",
@@ -26,16 +27,20 @@ export function it_del(){
 
 export function changeHandle(e){
 		// console.info( this ); //undefind
-  	return (dispatch, getState) => {
+	return (dispatch, getState) => {
 
 		// const
 		console.log("-", dispatch,getState() );
 
-    //没有返回就执行加一
-    dispatch(change(e.currentTarget.value));
-  }
+		//没有返回就执行加一
+		dispatch(change(e.currentTarget.value));
+	}
 }
 
 export function addFn1(val){
 	return {type:"add",tVal:val};
+}
+
+export function tFn1(val){
+	return {type:"temp",tVal:val};
 }

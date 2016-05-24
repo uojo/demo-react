@@ -22,7 +22,7 @@ class Cp1 extends Component {
     return (
       <div>
       <input type='text' value={tVal} onChange={as.changeHandle} ref="input"/>
-	  <button className={editId?"":"hide"} onClick={()=>as.it_save(tVal)}>save</button>
+	  <button className={editId?"":"hide"} onClick={()=>as.it_save({name:tVal})}>save</button>
 	  <button onClick={this.handleAdd.bind(this)}>add</button>
       <button onClick={this.handleToJSON.bind(this)}>toJSON</button>
       ( {tVal} )
