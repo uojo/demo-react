@@ -3,11 +3,13 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        app:path.join(__dirname, 'src'),
+        // app:path.join(__dirname, 'src'),
+        demo1:"./src/demo1",
+        demo2:"./src/demo2",
         vendors: ['react','redux']
     },
     output: {
-        path: path.join(__dirname, 'dist'),
+        path:path.join(__dirname, 'dist'),
         filename: '[name].js'
     },
 	// 新添加的module属性
