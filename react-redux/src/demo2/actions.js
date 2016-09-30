@@ -1,9 +1,11 @@
 import fetch from 'isomorphic-fetch'
 
+export const Status_init = "Status_init";
 export const Status_f5 = "Status_f5";
 export const Status_xhr_request = "Status_xhr_requst";
 export const Status_xhr_loading = "Status_xhr_loading";
 export const Status_xhr_complete = "Status_xhr_complete";
+export const Status_page_go = "Status_page_go";
 
 export function at0(val){
 	
@@ -40,6 +42,26 @@ export function at2(data){
 	}
 }
 
+// main init 
+export function main_init(data){
+	
+	return dispatch => {
+		
+		dispatch( xhr_list_f5() );
+		
+	};
+	
+}
+
+// 翻页：上下
+export function pageBean_go(data){
+	console.log("actions.js~pageBean_go",data);
+	return {
+		type:Status_page_go,
+		data
+	}
+}
+
 // xhr 准备 
 export function xhr_list_f5(data){
 	
@@ -67,7 +89,8 @@ export function xhr_list_get(data){
 			console.log("json",json);
 			return dispatch({
 				type:Status_xhr_complete,
-				items:json.items
+				items:json.items,
+				pageBean:json.pageBean
 			});
 		});
 

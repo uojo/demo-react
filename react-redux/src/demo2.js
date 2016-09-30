@@ -7,7 +7,7 @@ import store from './demo2/store'
 import 'isomorphic-fetch';
 
 // 打印初始状态
-console.log("1.打印初始状态",store.getState(), store);
+console.log("[1]~1.index.js~打印初始状态", store.getState(), store);
 
 render(
   <Provider store={store}>

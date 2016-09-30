@@ -2,18 +2,25 @@ import { bindActionCreators } from 'redux';
 import React, { findDOMNode, Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-
+import PageBean from './PageBean';
 import * as action from './actions'
+
+// 引入样式
+require("./1.css");
+
 
 class App extends Component {
 	constructor(props) {
 		super(props)
 		this.fn1 = this.fn1.bind(this)
+		this.change_pageBean = this.change_pageBean.bind(this)
 	}
 	
 	//初始化渲染后触发
 	componentDidMount() {
-		console.warn('lifecycle.初始化渲染后触发');
+		console.warn('[1]~lifecycle.初始化渲染后触发');
+		
+		this.props.dispatch( action.xhr_list_get() );
 		/* const { dispatch, selectedReddit } = this.props
 		dispatch(fetchPostsIfNeeded(selectedReddit)) */
 	}
@@ -31,7 +38,7 @@ class App extends Component {
 			dispatch(fetchPostsIfNeeded(selectedReddit))
 		} */
 	}
-  
+	
 	fn0() {
 		this.props.as.at0( action.Status_a_step1 );
 	}
@@ -42,17 +49,21 @@ class App extends Component {
 		console.log("action", this.props.as , action); */
 		
 		this.props.dispatch( action.xhr_list_f5() );
-		
 		// this.props.as.at2(action.Status_f5);
 		// action.at2(action.Status_f5);
 	}
 	
+	change_pageBean(op){
+		console.log("app.js~change_pageBean", op);
+		this.props.dispatch( action.pageBean_go(op) );
+	}
+	
 	render() {
-		console.log( "6.app.js~render 更新组件视图", this.props );
+		console.debug( "6.app.js~render 更新组件视图", this.props );
 		
 		const {list, logs} = this.props;
 		
-		console.debug("list", list );
+		// console.debug("list", list );
 		
 		return (
 			<div>
@@ -65,6 +76,10 @@ class App extends Component {
 				)}
 				</ul>
 				
+				<PageBean {...list.pageBean} onChange={this.change_pageBean} />
+				
+				<br/>
+				<br/>
 				<div>Logs:{logs.length}</div>
 				<textarea rows="10" value={ logs.join("\n") } readOnly ></textarea>
 			</div>
@@ -75,7 +90,7 @@ class App extends Component {
 //将reducers的return值注册到react的props上
 function mapStateToProps(state) {
 	const { logs, list } = state;
-	console.log( "4.app.js~reducers->state=>props 将reducers的return值注册到react的props", state );
+	console.log( "4.app.js~reducers->state=>props 将reducers的return值注册到react的 props", state );
 	return {
 		logs,
 		list
@@ -85,7 +100,7 @@ function mapStateToProps(state) {
 //将action的所有方法绑定到props上
 function mapDispatchToProps(dispatch) {
 	let _action = bindActionCreators(action, dispatch);
-	console.warn("5.app.js~action.*=>props 将action的所有方法绑定到props", _action);
+	console.warn("[1]~5.app.js~action.*=>props 将action的所有方法绑定到 props", _action);
 	return {
 		as:_action,
 		dispatch
