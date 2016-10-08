@@ -1,23 +1,22 @@
 import fetch from 'isomorphic-fetch'
-
+import {extend,param} from "jquery"
 export const Status_init = "Status_init";
 export const Status_f5 = "Status_f5";
+
 export const Status_xhr_request = "Status_xhr_requst";
 export const Status_xhr_loading = "Status_xhr_loading";
 export const Status_xhr_complete = "Status_xhr_complete";
 export const Status_page_go = "Status_page_go";
 
-export function at0(val){
-	
-	return {
-		type:Status_a_step1,
-		val
-	}
-}
+export const Status_listAdd_show = "Status_listAdd_show";
+export const Status_listAdd_request = "Status_listAdd_request";
+export const Status_listAdd_loading = "Status_listAdd_loading";
+export const Status_listAdd_complete = "Status_listAdd_complete";
+
 
 export function at1(val){
 	console.debug("a.actions.js~at1", val);
-		
+	
 	return (dispatch, getState) => {
 		
 		let state = getState();
@@ -76,17 +75,29 @@ export function xhr_list_f5(data){
 
 // xhr 开始
 export function xhr_list_get(data){
-	// console.debug("a.actions.js~", data);
+	// console.debug("a.actions.js~xhr_list_get", data);
+	// console.debug("JSON", JSON.stringify({a:1,b:2}), JSON);
+	
+	let pd = extend({
+		current:1
+	},data);
 	
 	return (dispatch) => {
 		dispatch({
+			// 发送请求
 			type:Status_xhr_request
 		});
-
-		return fetch("http://assets.dxycdn.com/docs/files/items2.php")
+		
+		return fetch("http://assets.dxycdn.com/docs/files/items2.php?page="+pd.current,{
+			method:"GET",
+			// body: "a:1",
+			/* headers: {
+				"Content-Type": "application/json"
+			} */
+		})
 		.then(response => response.json())
 		.then(function(json){
-			console.log("json",json);
+			console.log("actions.js~response",pd.current,json);
 			return dispatch({
 				type:Status_xhr_complete,
 				items:json.items,
@@ -96,6 +107,60 @@ export function xhr_list_get(data){
 
 	}
 }
+
+
+export function list_add_show(data){
+	console.debug("a.actions.js~list_add_show", data);
+	return {
+		type:Status_listAdd_show,
+		data
+	}
+}
+
+export function list_add_send(data){
+	console.debug("a.actions.js~list_add_send", data);
+	return {
+		type:Status_listAdd_request,
+		name:data
+	}
+}
+
+export function xhr_add_request(data){
+	// console.debug("a.actions.js~xhr_list_get", data);
+	// console.debug("JSON", JSON.stringify({a:1,b:2}), JSON);
+	
+	let pd = extend({
+		name:""
+	},data);
+	
+	return (dispatch) => {
+				
+		return fetch("http://assets.dxycdn.com/docs/files/add.php",{
+			method:"POST",
+			// body: JSON.stringify(data),
+			// body: "name=100&t=99",
+			// body: data,
+			body: param(data),
+			headers: {
+				// "Content-Type": "application/json"
+				"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+			},
+			// credentials:"omit"
+		})
+		.then(response => response.json())
+		.then(function(json){
+			console.log("actions.js~response.add",pd.current,json);
+			if(json.result){
+				return dispatch({
+					type:Status_listAdd_complete,
+					id:json.result
+				});
+			}
+		});
+
+	}
+}
+
 /* 
 function fetchPosts(reddit) {
   return dispatch => {

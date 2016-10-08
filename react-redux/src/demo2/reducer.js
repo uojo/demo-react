@@ -1,12 +1,12 @@
 import {extend} from "jquery"
-import { Status_page_go, Status_init, Status_f5, Status_xhr_request, Status_xhr_loading, Status_xhr_complete } from './actions'
+import * as Actions from './actions'
 
 // console.log( extend );
 // reducer就是个function,名字随便你起，功能就是在action触发后，返回一个新的state(就是个对象)
 const initD = {
-	type:Status_init,
+	type:Actions.Status_init,
 	list:{
-		status:"init",
+		step:"init",
 		items:[
 		// {"id":1,"name":"张三","job":"无"}
 		],
@@ -25,20 +25,23 @@ const initD = {
 		index:0
 	},
 	add:{
+		step:"hide",
+		id:0,
 		name:"默认名称"
 	}
 };
 
 export default function reducer(state=initD, action){
 	console.info( "0.reducer.js", state, action );
+	let _state;
+	
 	switch (action.type) {
 		
-		case Status_f5:
-			// 异步请求
-			
+		case Actions.Status_f5:
+			// 重新请求列表
 			return extend(true, {}, state, {
 				list:{
-					status:"send"
+					step:"send"
 				},
 				logs:[
 					"xhr send",
@@ -46,12 +49,11 @@ export default function reducer(state=initD, action){
 				]
 			});
 			
-		case Status_xhr_request:
-			// 异步请求
-			
+		case Actions.Status_xhr_request:
+			// 开始请求列表数据
 			return extend(true, {}, state, {
 				list:{
-					status:"loading"
+					step:"loading"
 				},
 				logs:[
 					"xhr loading",
@@ -59,14 +61,12 @@ export default function reducer(state=initD, action){
 				]
 			});
 		
-		case Status_xhr_complete:
-			// 异步请求
-			
-			return extend(true, {}, state,{
-				type: Status_xhr_complete,
+		case Actions.Status_xhr_complete:
+			// 列表请求发送完毕
+			_state = extend(true, {}, state,{
+				type: Actions.Status_xhr_complete,
 				list: {
-					status:"complete",
-					items: action.items,
+					step:"complete",
 					pageBean: action.pageBean
 				},
 				logs:[
@@ -74,28 +74,72 @@ export default function reducer(state=initD, action){
 					...state.logs
 				]
 			});
+			_state.list.items = action.items;
+			// console.log( 20, _state );
+			
+			return _state;
 		
-		case Status_page_go:
+		case Actions.Status_page_go:
 			// 翻页
 			let t_cur, pbD = state.list.pageBean;
+			
+			
 			if(action.data=="prev"){
-				// 上一页
-				t_cur = pbD.current - 1;
-				t_cur = t_cur<1?1:t_cur;
-				t_cur = t_cur>pbD.total?pbD.total:t_cur;
+				if(pbD.current==1){
+					return state;
+				}
 				
+				t_cur = pbD.current - 1;
 			}
 			
 			if(action.data=="next"){
-				// 上一页
+				// 下一页
+				if(pbD.current==pbD.total){
+					return state;
+				}
 				
+				t_cur = pbD.current + 1;
 			}
+			
+				t_cur = t_cur<1?1:t_cur;
+				t_cur = t_cur>pbD.total?pbD.total:t_cur;
+			
 			
 			return extend(true, {}, state,{
 				list:{
+					step:"send",
 					pageBean:{
 						current:t_cur
 					}
+				}
+			});
+			
+		case Actions.Status_listAdd_show:
+			return extend(true, {}, state,{
+				add:{
+					step:"show"
+				}
+			});
+		
+		case Actions.Status_listAdd_request:
+			return extend(true, {}, state,{
+				add:{
+					step:"loading",
+					name:action.name
+				}
+			});
+		
+		case Actions.Status_listAdd_complete:
+			return extend(true, {}, state,{
+				add:{
+					step:"complete",
+					id:action.id
+				},
+				list:{
+					items:[
+						{id:action.id, name:state.add.name},
+						...state.list.items
+					]
 				}
 			});
 			
@@ -105,4 +149,7 @@ export default function reducer(state=initD, action){
 		default:
 			return state;
 	};
+	
+	
+	
 };
