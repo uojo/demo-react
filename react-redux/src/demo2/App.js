@@ -7,6 +7,7 @@ import * as action from './actions'
 
 // 引入样式
 require("./1.css");
+// import "./1.css";
 
 
 class App extends Component {
