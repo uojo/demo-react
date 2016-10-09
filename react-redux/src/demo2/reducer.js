@@ -28,6 +28,11 @@ const initD = {
 		step:"hide",
 		id:0,
 		name:"默认名称"
+	},
+	del:{
+		step:"",
+		id:0,
+		name:"默认名称"
 	}
 };
 
@@ -142,6 +147,25 @@ export default function reducer(state=initD, action){
 					]
 				}
 			});
+			
+		case Actions.Status_itDel_before:
+			return extend(true, {}, state,{
+				del:{
+					step:"remove",
+					id:action.id
+				}
+			});
+			
+		case Actions.Status_itDel_complete:
+			
+			_state = extend(true, {}, state,{
+				del:{
+					step:"success"
+				}
+			});
+			_state.list.items = state.list.items.filter( it => it.id!=action.id );
+			
+			return _state;
 			
 		case '@@redux/INIT':
 			return state;

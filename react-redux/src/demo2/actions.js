@@ -13,6 +13,9 @@ export const Status_listAdd_request = "Status_listAdd_request";
 export const Status_listAdd_loading = "Status_listAdd_loading";
 export const Status_listAdd_complete = "Status_listAdd_complete";
 
+export const Status_itDel_before = "Status_itDel_before";
+export const Status_itDel_loading = "Status_itDel_loading";
+export const Status_itDel_complete = "Status_itDel_complete";
 
 export function at1(val){
 	console.debug("a.actions.js~at1", val);
@@ -159,6 +162,52 @@ export function xhr_add_request(data){
 		});
 
 	}
+}
+
+
+export function it_del(id){
+	console.debug("a.actions.js~it_del", id);
+	
+    return {
+        type:Status_itDel_before,
+        id
+    }
+}
+
+export function it_del_request(pd){
+	console.debug("a.actions.js~it_del_request", pd);
+	
+    return (dispatch) => {
+		
+		dispatch({
+			type:Status_itDel_loading,
+			id:pd.id
+		});
+		
+		return fetch("http://assets.dxycdn.com/docs/files/del.php",{
+			method:"POST",
+			// body: JSON.stringify(data),
+			// body: "name=100&t=99",
+			// body: data,
+			body: param(pd),
+			headers: {
+				// "Content-Type": "application/json"
+				"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+			},
+			// credentials:"omit"
+		})
+		.then(response => response.json())
+		.then(function(json){
+			console.log("actions.js~response.del",json);
+			if(json.success){
+				return dispatch({
+					type:Status_itDel_complete,
+					id:pd.id
+				});
+			}
+		});
+
+    }
 }
 
 /* 

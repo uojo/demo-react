@@ -7,7 +7,6 @@ import * as Actions from './actions'
 
 // 引入样式
 require("./1.css");
-// import "./1.css";
 
 
 class App extends Component {
@@ -31,19 +30,21 @@ class App extends Component {
 	componentWillReceiveProps(nextProps) {
 		console.warn('lifecycle.每次接受新的props触发',nextProps);
 		
-		
-		// 请求列表数据
+		// 请求列表数据-start
 		if( nextProps.list.step == "send" ){
 			const { dispatch } = nextProps;
 			// console.debug( dispatch );
 			dispatch( Actions.xhr_list_get({current:nextProps.list.pageBean.current}) );
 		}
 		
+		
 		if( nextProps.add.step == "loading" ){
-			const { dispatch } = nextProps;
 			this.props.dispatch( Actions.xhr_add_request({name:nextProps.add.name}) );
-			// console.debug( dispatch );
-			// dispatch( Actions.xhr_list_get({current:nextProps.list.pageBean.current}) );
+		}
+		
+		if( nextProps.del.step == "remove" ){
+			const { dispatch, del } = nextProps;
+			dispatch( Actions.it_del_request(del) );
 		}
 		/* if (nextProps.selectedReddit !== this.props.selectedReddit) {
 			const { dispatch, selectedReddit } = nextProps
@@ -51,8 +52,9 @@ class App extends Component {
 		} */
 	}
 	
-	list_remove_one() {
+	list_remove_one(id) {
 		console.log(arguments,this);
+		this.props.dispatch( Actions.it_del(id) );
 	}
 
 	list_add_show() {
@@ -64,7 +66,6 @@ class App extends Component {
 		if(val){
 			this.props.as.list_add_send(val);
 		}
-		
 	}
 	
 	list_reload() {
@@ -116,12 +117,13 @@ class App extends Component {
 
 //将reducers的return值注册到react的props上
 function mapStateToProps(state) {
-	const { logs, list, add } = state;
+	const { logs, list, add, del } = state;
 	console.log( "4.app.js~reducers->state=>props 将reducers的return值注册到react的 props", state );
 	return {
 		logs,
 		list,
-		add
+		add,
+		del
 	};
 }
 
