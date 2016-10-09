@@ -15,6 +15,7 @@ class App extends Component {
 		super(props)
 		this.list_reload = this.list_reload.bind(this)
 		this.change_pageBean = this.change_pageBean.bind(this)
+		this.list_remove_one = this.list_remove_one.bind(this)
 	}
 	
 	//初始化渲染后触发，只执行一次
@@ -50,6 +51,10 @@ class App extends Component {
 		} */
 	}
 	
+	list_remove_one() {
+		console.log(arguments,this);
+	}
+
 	list_add_show() {
 		this.props.as.list_add_show();
 	}
@@ -94,7 +99,7 @@ class App extends Component {
 				
 				<ul>
 				{list.items.map( it =>
-					<li key={it.id} da={it}>{it.name}</li>
+					<li key={it.id} da={it}>{it.name} <a onClick={() => this.list_remove_one(it.id) }>删</a> </li>
 				)}
 				</ul>
 				

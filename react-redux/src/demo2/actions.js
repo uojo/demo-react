@@ -149,7 +149,7 @@ export function xhr_add_request(data){
 		})
 		.then(response => response.json())
 		.then(function(json){
-			console.log("actions.js~response.add",pd.current,json);
+			console.log("actions.js~response.add",json);
 			if(json.result){
 				return dispatch({
 					type:Status_listAdd_complete,
