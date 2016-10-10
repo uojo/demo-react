@@ -6,6 +6,7 @@ module.exports = {
         // app:path.join(__dirname, 'src'),
         demo1:"./src/demo1",
         demo2:"./src/demo2",
+        demo3:"./src/demo3",
         vendors: ['react','redux']
     },
     output: {
