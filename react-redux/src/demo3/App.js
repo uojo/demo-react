@@ -6,6 +6,7 @@ import Form1 from './Form1';
 // import Form1Result from './Form1Result';
 import Form2 from './Form2';
 import Form3 from './Form3';
+import Form4 from './Form4';
 import * as Actions from './actions'
 import { reducer as reduxFormReducer } from 'redux-form'
 // 引入样式
@@ -24,7 +25,7 @@ class App extends Component {
 	
 	//初始化渲染后触发，只执行一次
 	componentDidMount() {
-		console.warn('[1]~lifecycle.初始化渲染后触发');
+		console.warn('[1]~lifecycle.app.js~初始化渲染后触发');
 		
 	}
 
@@ -38,18 +39,14 @@ class App extends Component {
 	render() {
 		console.debug( "6.app.js~render 更新组件视图", this.props );
 		
-		const {add, list, logs} = this.props;
+		const {form:{form1}} = this.props;
 		// const SimpleForm = require("./Form1").default
 		// console.log(1, SimpleForm===Form1, SimpleForm);
 		
 		return (
 			<div>
-				<Form1 onSubmit={showResults} />
-				<hr />
-				<Form2 onSubmit={showResults}/>
-				<hr />
-				<Form3/>
 				
+				<Form4 onSubmit={showResults}/>
 			</div>
 		)
 	};
