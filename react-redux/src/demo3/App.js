@@ -3,6 +3,8 @@ import React, { findDOMNode, Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import Form1 from './Form1';
+import Form2 from './Form2';
+import Form3 from './Form3';
 import * as Actions from './actions'
 import { reducer as reduxFormReducer } from 'redux-form'
 // 引入样式
@@ -36,14 +38,17 @@ class App extends Component {
 		console.debug( "6.app.js~render 更新组件视图", this.props );
 		
 		const {add, list, logs} = this.props;
-		const SimpleForm = require("./Form1").default
-		
-		
-		console.log(1, SimpleForm===Form1, SimpleForm);
+		// const SimpleForm = require("./Form1").default
+		// console.log(1, SimpleForm===Form1, SimpleForm);
 		
 		return (
 			<div>
 				<Form1 onSubmit={showResults} />
+				<hr />
+				<Form2 onSubmit={showResults}/>
+				<hr />
+				<Form3/>
+				
 			</div>
 		)
 	};

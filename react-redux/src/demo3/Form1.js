@@ -1,13 +1,25 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+// import 
 
-const SimpleForm = (props) => {
-  const { handleSubmit, pristine, reset, submitting } = props
-  
-  console.info("Form.js",props);
+const data = {  // used to populate "account" reducer when "Load" is clicked
+  firstName: 'Jane',
+  lastName: 'Doe',
+  age: '42',
+  sex: 'female',
+  employed: true,
+  favoriteColor: 'Blue',
+  bio: 'Born to write amazing Redux code.'
+}
+
+const FormA = (props) => {
+  console.info("Form1.js",props);
+
+  const { handleSubmit, load, pristine, reset, submitting } = props
   
   return (
     <form onSubmit={handleSubmit}>
+      <h5>simple form <a onClick={()=>load(data)}>setData</a></h5>
       <div>
         <label>First Name</label>
         <div>
@@ -64,6 +76,15 @@ const SimpleForm = (props) => {
   )
 }
 
-export default reduxForm({
-  form: 'simple'  // a unique identifier for this form
-})(SimpleForm)
+FormA = reduxForm({
+  form: 'form1'  // a unique identifier for this form
+})(FormA)
+
+FormA = connect(
+  state => ({
+    initialValues: state.account.data // pull initial values from account reducer
+  }),
+  { load: loadAccount }               // bind account loading action creator
+)(FormA)
+
+export default FormA;
