@@ -65,5 +65,9 @@ const SimpleForm = (props) => {
 }
 
 export default reduxForm({
-  form: 'simple'  // a unique identifier for this form
+  form: 'formA',  // a unique identifier for this form
+  // fields,
+  initailValus:{
+	  title:"wang"
+  }
 })(SimpleForm)
