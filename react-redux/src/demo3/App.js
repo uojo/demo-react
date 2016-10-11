@@ -56,13 +56,10 @@ class App extends Component {
 
 //将reducers的return值注册到react的props上
 function mapStateToProps(state) {
-	const { logs, list, add, del } = state;
+	const { form } = state;
 	console.log( "4.app.js~reducers->state=>props 将reducers的return值注册到react的 props", state );
 	return {
-		logs,
-		list,
-		add,
-		del
+		form,
 	};
 }
 

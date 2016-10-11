@@ -1,10 +1,12 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux';
+import { Field, reduxForm, formValueSelector } from 'redux-form'
+import { load as As_load } from './actions'
 // import 
 
 const data = {  // used to populate "account" reducer when "Load" is clicked
   firstName: 'Jane',
-  lastName: 'Doe',
+  // lastName: 'Doe',
   age: '42',
   sex: 'female',
   employed: true,
@@ -12,24 +14,43 @@ const data = {  // used to populate "account" reducer when "Load" is clicked
   bio: 'Born to write amazing Redux code.'
 }
 
-const FormA = (props) => {
+let FormA = (props) => {
   console.info("Form1.js",props);
-
-  const { handleSubmit, load, pristine, reset, submitting } = props
+  const { handleSubmit, pristine, reset, submitting, change, autofill, load, v3 } = props;
+  
+  const fn1 = s1 => 
+	(val,prevVal,allVal) => {
+		console.warn("2",val,prevVal,allVal,s1);
+		return val?val:0;
+	}
+	
+  const fn2 = s1 => {
+		change("age",110)
+	}
+	
+  // (change("email",120))
   
   return (
     <form onSubmit={handleSubmit}>
-      <h5>simple form <a onClick={()=>load(data)}>setData</a></h5>
+      <h5>simple form <button type="button" onClick={()=>load(data)}>setData</button></h5>
       <div>
         <label>First Name</label>
         <div>
           <Field name="firstName" component="input" type="text" placeholder="First Name"/>
+		  {v3}
         </div>
       </div>
       <div>
         <label>Last Name</label>
         <div>
           <Field name="lastName" component="input" type="text" placeholder="Last Name"/>
+        </div>
+      </div>
+	  <div>
+        <label>Age</label>
+        <div>
+          <Field name="age" component="input" type="number" placeholder="Age" normalize={fn1("hello")}/>
+		  <button type="button" onClick={ fn2 }>Set</button>
         </div>
       </div>
       <div>
@@ -71,6 +92,7 @@ const FormA = (props) => {
       <div>
         <button type="submit" disabled={pristine || submitting}>Submit</button>
         <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
+        
       </div>
     </form>
   )
@@ -79,16 +101,31 @@ const FormA = (props) => {
 
 FormA = reduxForm({
   form: 'form1',  // a unique identifier for this form
-  /* initailValus:{
-	  title:"wang"
+  // 初始赋值
+  initialValues:{
+	  firstName:'wang',
+	  lastName: 'chong'
+  },
+  enableReinitialize:true,
+  /* getFormState:function(ops){
+	  console.info("getFormState",ops);
+	  // return ops;
   } */
 })(FormA)
 
+const sltor1 = formValueSelector("form1");
 FormA = connect(
-  state => ({
-    initialValues: state.account.data // pull initial values from account reducer
-  }),
-  { load: loadAccount }               // bind account loading action creator
+  state => {
+    console.log( "将state注册到props中",state )
+	
+	const {firstName, lastName} = sltor1(state, "firstName", "lastName");
+	
+	return {
+		initialValues: state.reducer_1.data,
+		v3: `${firstName || ""} ${lastName || ""}`
+	} // pull initial values from account reducer
+  },
+  { load: As_load }               // bind account loading action creator
 )(FormA)
 
 export default FormA;
