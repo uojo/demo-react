@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
+    "immutable": "^3.8.1",
     "redux-form": "^6.1.0"
   },
   "devDependencies": {

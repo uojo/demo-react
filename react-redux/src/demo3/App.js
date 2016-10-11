@@ -3,6 +3,7 @@ import React, { findDOMNode, Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import Form1 from './Form1';
+// import Form1Result from './Form1Result';
 import Form2 from './Form2';
 import Form3 from './Form3';
 import * as Actions from './actions'

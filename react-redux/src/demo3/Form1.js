@@ -28,7 +28,7 @@ let FormA = (props) => {
 		change("age",110)
 	}
 	
-  // (change("email",120))
+  (change("email",120))
   
   return (
     <form onSubmit={handleSubmit}>
@@ -116,7 +116,7 @@ FormA = reduxForm({
 const sltor1 = formValueSelector("form1");
 FormA = connect(
   state => {
-    console.log( "将state注册到props中",state )
+    console.log( 34,"将state注册到props中",state )
 	
 	const {firstName, lastName} = sltor1(state, "firstName", "lastName");
 	
