@@ -46,6 +46,12 @@ class App extends Component {
 		return (
 			<div>
 				
+				<Form1 onSubmit={showResults}/>
+				<hr/>
+				<Form2 onSubmit={showResults}/>
+				<hr/>
+				<Form3/>
+				<hr/>
 				<Form4 onSubmit={showResults}/>
 			</div>
 		)
