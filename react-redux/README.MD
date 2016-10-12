@@ -1,6 +1,5 @@
-###运行方法
-    npm install
-    npm run build
-  手动打开index.html
+## 开始 ##
 
-*如果您觉得本程序或者博客帮到了您，就赏颗星吧！*
+1. npm install
+2. npm run start
+3. 手动访问 index.html

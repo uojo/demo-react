@@ -35,7 +35,6 @@ class App extends Component {
 		
 	}
 	
-	
 	render() {
 		console.debug( "6.app.js~render 更新组件视图", this.props );
 		
