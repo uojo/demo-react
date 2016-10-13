@@ -24,11 +24,12 @@
     "redux-thunk": "^2.1.0",
     "style-loader": "^0.13.1",
     "underscore": "^1.8.3",
-    "webpack": "^1.12.10"
+    "webpack": "^1.12.10",
+    "webpack-dev-server": "^1.16.2"
   },
   "scripts": {
-    "start": "webpack --progress -colors --watch",
-    "dev": "webpack-dev-server --host 127.0.0.1 --port 1000 --content-base ./ --hot --inline"
+    "build": "webpack --progress -colors --watch",
+    "dev": "webpack-dev-server --host 127.0.0.1 --port 4000 --content-base ./ --hot --inline"
   },
   "author": "lewis617",
   "license": "ISC"
