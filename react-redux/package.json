@@ -27,7 +27,8 @@
     "webpack": "^1.12.10"
   },
   "scripts": {
-    "start": "webpack --progress -colors --watch"
+    "start": "webpack --progress -colors --watch",
+    "dev": "webpack-dev-server --host 127.0.0.1 --port 1000 --content-base ./ --hot --inline"
   },
   "author": "lewis617",
   "license": "ISC"

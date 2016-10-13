@@ -10,6 +10,7 @@ module.exports = {
         vendors: ['react','redux']
     },
     output: {
+		publicPath: "/dist/",
         path:path.join(__dirname, 'dist'),
         filename: '[name].js'
     },
