@@ -57,8 +57,17 @@ class App extends Component {
 		this.props.dispatch( Actions.it_del(id) );
 	}
 
-	list_add_show() {
-		this.props.as.list_add_show();
+	item_change(e) {
+		console.log("item_change", e.target.value );
+		this.props.dispatch( Actions.ui_item_change({name:e.target.value}) );
+	}
+	
+	ui_item_ctrl(type, data) {
+		this.props.dispatch( Actions.ui_item_ctrl(type,data) );
+	}
+	
+	item_save(pd) {
+		this.props.dispatch( Actions.ui_item_save(pd) );
 	}
 	
 	list_add_send() {
@@ -85,22 +94,31 @@ class App extends Component {
 	render() {
 		console.debug( "6.app.js~render 更新组件视图", this.props );
 		
-		const {add, list, logs} = this.props;
+		const {add, edit, list, logs, ui} = this.props;
 		
 		console.debug("list", list.items.length, list, add );
 		
 		return (
 			<div>
 				<button onClick={this.list_reload}>刷新列表</button>
-				<button onClick={this.list_add_show.bind(this)}>新增</button>
+				<button onClick={()=>this.ui_item_ctrl("add")}>新增</button>
 				
-				{(1 || add.step!="hide") && 
-				<p className=""> <input type="text" ref="add_input" /><button onClick={this.list_add_send.bind(this)}>提交</button> </p>
+				{(ui.itemCtrl=="add") && 
+				<p className=""> 新增：<input type="text" ref="add_input" /><button onClick={this.list_add_send.bind(this)}>提交</button> </p>
+				}
+				
+				{(ui.itemCtrl=="edit") && 
+				<p className=""> 编辑：<input onChange={this.item_change.bind(this)} value={edit.pd.name} type="text" ref="add_input" /><button disabled={edit.step=="send" && "true"} onClick={()=>this.item_save(edit.pd)}>{edit.step=="send"?"保存中":"保存"}</button> </p>
 				}
 				
 				<ul>
 				{list.items.map( it =>
-					<li key={it.id} da={it}>{it.name} <a onClick={() => this.list_remove_one(it.id) }>删</a> </li>
+					<li key={it.id} da={it}>{it.name}
+						&nbsp;
+						<a onClick={() => this.ui_item_ctrl("edit",it) }>改</a>
+						&nbsp;
+						<a onClick={() => this.list_remove_one(it.id) }>删</a>
+						</li>
 				)}
 				</ul>
 				
@@ -117,13 +135,15 @@ class App extends Component {
 
 //将reducers的return值注册到react的props上
 function mapStateToProps(state) {
-	const { logs, list, add, del } = state;
+	const { logs, list, add, edit, del, ui } = state;
 	console.log( "4.app.js~reducers->state=>props 将reducers的return值注册到react的 props", state );
 	return {
 		logs,
 		list,
 		add,
-		del
+		edit,
+		del,
+		ui
 	};
 }
 

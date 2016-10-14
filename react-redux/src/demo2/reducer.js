@@ -22,7 +22,11 @@ const initD = {
 	},
 	logs:["initBefore","initAfter"],
 	edit:{
-		index:0
+		step:"",
+		pd:{
+			id:0,
+			name:""
+		}
 	},
 	add:{
 		step:"hide",
@@ -33,6 +37,9 @@ const initD = {
 		step:"",
 		id:0,
 		name:"默认名称"
+	},
+	ui:{
+		itemCtrl:""
 	}
 };
 
@@ -119,12 +126,37 @@ export default function reducer(state=initD, action){
 				}
 			});
 			
-		case Actions.Status_listAdd_show:
-			return extend(true, {}, state,{
-				add:{
-					step:"show"
+		case Actions.UI_item_ctrl:
+			return extend(true, {}, state, {
+				ui:{
+					itemCtrl:action.itemCtrl
+				},
+				edit:{
+					pd:action.data
 				}
 			});
+		
+		case Actions.S_item_saveBefore:
+			return extend(true, {}, state,{
+				edit:{
+					step:"send"
+				}
+			});
+		
+		case Actions.S_item_saveAfter:
+			_state = extend( true, {}, state, {
+				edit:{
+					step:"complete"
+				},
+				list:{
+					items:state.list.items.map(it=>
+						it.id===action.pd.id?action.pd:it
+					)
+				}
+			});
+			
+			
+			return _state;
 		
 		case Actions.Status_listAdd_request:
 			return extend(true, {}, state,{
@@ -168,12 +200,8 @@ export default function reducer(state=initD, action){
 			return _state;
 			
 		case '@@redux/INIT':
-			return state;
-		
 		default:
 			return state;
 	};
-	
-	
 	
 };

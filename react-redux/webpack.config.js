@@ -3,11 +3,12 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
+		vendors: ['react','redux'],
         // app:path.join(__dirname, 'src'),
         demo1:"./src/demo1",
         demo2:"./src/demo2",
         demo3:"./src/demo3",
-        vendors: ['react','redux']
+        
     },
     output: {
 		publicPath: "/dist/",
@@ -34,5 +35,9 @@ module.exports = {
     plugins: [
 		// 将公共部分抽成
         new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
-    ]
+    ],
+	devServer:{
+		inline:true,
+		hot:true
+	}
 };
