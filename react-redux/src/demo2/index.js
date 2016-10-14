@@ -1,9 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import App from './demo2/App'
+import App from './containers/App'
 
-import store from './demo2/store'
+import store from './store/cfg'
 import 'isomorphic-fetch';
 
 // 打印初始状态

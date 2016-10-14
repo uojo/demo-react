@@ -8,6 +8,9 @@ export const Status_xhr_loading = "Status_xhr_loading";
 export const Status_xhr_complete = "Status_xhr_complete";
 export const Status_page_go = "Status_page_go";
 
+export const Status_listAdd_request = "Status_listAdd_request";
+export const Status_listAdd_complete = "Status_listAdd_complete";
+
 export const UI_item_ctrl = "UI_item_ctrl";
 export const S_item_saveBefore = "S_item_saveBefore";
 export const S_item_saveAfter = "S_item_saveAfter";

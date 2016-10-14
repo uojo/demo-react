@@ -2,11 +2,11 @@ import { bindActionCreators } from 'redux';
 import React, { findDOMNode, Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import PageBean from './PageBean';
-import * as Actions from './actions'
+import PageBean from '../components/PageBean';
+import * as Actions from '../actions/actions'
 
 // 引入样式
-require("./1.css");
+require("../style/1.css");
 
 
 class App extends Component {
