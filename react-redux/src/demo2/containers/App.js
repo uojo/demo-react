@@ -3,6 +3,7 @@ import React, { findDOMNode, Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import PageBean from '../components/PageBean';
+import T1 from '../components/T1';
 import * as Actions from '../actions/actions'
 
 // 引入样式
@@ -87,16 +88,16 @@ class App extends Component {
 	}
 	
 	change_pageBean(op){
-		console.log("app.js~change_pageBean", op);
+		// console.log("app.js~change_pageBean", op);
 		this.props.dispatch( Actions.pageBean_go(op) );
 	}
 	
 	render() {
-		console.debug( "6.app.js~render 更新组件视图", this.props );
+		// console.debug( "6.app.js~render 更新组件视图", this.props );
 		
 		const {add, edit, list, logs, ui} = this.props;
 		
-		console.debug("list", list.items.length, list, add );
+		// console.debug("list", list.items.length, list, add );
 		
 		return (
 			<div>
@@ -124,6 +125,7 @@ class App extends Component {
 				
 				<PageBean {...list.pageBean} onChange={this.change_pageBean} />
 				
+				<T1 />
 				<br/>
 				<br/>
 				<div>Logs:{logs.length}</div>
@@ -136,7 +138,7 @@ class App extends Component {
 //将reducers的return值注册到react的props上
 function mapStateToProps(state) {
 	const { logs, list, add, edit, del, ui } = state;
-	console.log( "4.app.js~reducers->state=>props 将reducers的return值注册到react的 props", state );
+	// console.log( "4.app.js~reducers->state=>props 将reducers的return值注册到react的 props", state );
 	return {
 		logs,
 		list,
@@ -150,7 +152,7 @@ function mapStateToProps(state) {
 //将action的所有方法绑定到props上
 function mapDispatchToProps(dispatch) {
 	let _action = bindActionCreators(Actions, dispatch);
-	console.warn("[1]~5.app.js~action.*=>props 将action的所有方法绑定到 props", _action);
+	// console.warn("[1]~5.app.js~action.*=>props 将action的所有方法绑定到 props", _action);
 	return {
 		as:_action,
 		dispatch

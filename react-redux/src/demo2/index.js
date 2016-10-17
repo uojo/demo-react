@@ -15,3 +15,4 @@ render(
   </Provider>,
   document.querySelector("#app")
 );
+

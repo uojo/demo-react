@@ -23,7 +23,7 @@ class Cp1 extends Component {
 	
   render() {
     
-	// console.debug("PageBean", this.props);
+	// console.debug("PageBean.js", this.props);
 	const {count, current, total} = this.props;
 	
     return (
