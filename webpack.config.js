@@ -3,15 +3,10 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-		vendors: ['react','redux'],
-        // app:path.join(__dirname, 'src'),
-        // demo1:"./src/demo1",
-        demo2:[
-		// "webpack-dev-server/client?http://127.0.0.1:4000/",
-		"webpack/hot/dev-server",
-		"./src/demo2/index"
-		],
-        // demo3:"./src/demo3",
+        demo1:[
+			"webpack/hot/dev-server",
+			"./src/demo1/index"
+		]
         
     },
     output: {
@@ -38,7 +33,7 @@ module.exports = {
     },
     plugins: [
 		// 将公共部分抽成
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+        // new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
 		new webpack.HotModuleReplacementPlugin()
     ],
 	devServer:{

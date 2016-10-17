@@ -1,11 +1,10 @@
 {
-  "name": "todo-redux",
+  "name": "demo-react",
   "version": "1.0.0",
   "description": "",
   "dependencies": {
     "immutable": "^3.8.1",
-    "react-router": "^2.8.1",
-    "redux-form": "^6.1.0"
+    "react-router": "^2.8.1"
   },
   "devDependencies": {
     "babel-core": "^6.4.0",
@@ -18,11 +17,6 @@
     "path": "^0.12.7",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
-    "react-redux": "^4.0.6",
-    "redux": "^3.0.5",
-    "redux-promise-middleware": "^4.0.0",
-    "redux-router": "^2.1.2",
-    "redux-thunk": "^2.1.0",
     "style-loader": "^0.13.1",
     "underscore": "^1.8.3",
     "webpack": "^1.12.10",
@@ -30,8 +24,8 @@
   },
   "scripts": {
     "build": "webpack --progress -colors --watch",
-    "dev": "webpack-dev-server --host 127.0.0.1 --port 4000 --content-base ./ --hot --inline"
+    "dev": "webpack-dev-server --host 127.0.0.1 --port 3999 --content-base ./ --hot --inline"
   },
-  "author": "lewis617",
+  "author": "uojo",
   "license": "ISC"
 }

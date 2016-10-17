@@ -92,30 +92,13 @@ class App extends Component {
 	render() {
 		console.debug( "6.app.js~render 更新组件视图", this.props );
 		
-		const {children, dispatch, add, edit, list, logs, ui} = this.props;
+		const {dispatch, add, edit, list, logs, ui} = this.props;
 		
 		// console.debug("list", list.items.length, list, add );
 		
 		return (
 			<div>
-				<button onClick={this.list_reload}>刷新列表</button>
-				<button onClick={()=>this.ui_item_ctrl("add")}>新增</button>
-
-				{(ui.itemCtrl=="add") && 
-				<p className=""> 新增：<input type="text" ref="add_input" /><button onClick={this.list_add_send.bind(this)}>提交</button> </p>
-				}
-
-				{(ui.itemCtrl=="edit") && 
-				<p className=""> 编辑：<input onChange={this.item_change.bind(this)} value={edit.pd.name} type="text" ref="add_input" /><button disabled={edit.step=="send" && "true"} onClick={()=>this.item_save(edit.pd)}>{edit.step=="send"?"保存中":"保存"}</button> </p>
-				}
-
-				<List {...list} />
-
-				<br/>
-				<br/>
-				<Logs data={logs} />
-				
-				{children}
+				Hello123
 			</div>
 		)
 	};
