@@ -3,7 +3,7 @@ var T1 = React.createClass({
   render: function () {
     return (
       <div className="productBox">
-        Hello World!
+        组件1
       </div>
     );
   }

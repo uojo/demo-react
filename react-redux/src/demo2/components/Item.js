@@ -1,29 +1,24 @@
 import React, { PropTypes, Component } from 'react'
-import {ui_item_ctrl} from '../actions/item';
-
 
 class Cp1 extends Component {
 	
 	constructor(props) {
 		super(props)
-		// this.fn5 = this.fn1.bind(this)
+		
+		// this.state = {}
 	}
 
-
-	edit() {
-		this.props.dispatch( ui_item_ctrl("edit", this.props) );
-	}
 
 	render(){
-		console.log(this.props);
-		const {id,name} = this.props
+		// console.log(1, this.props);
+		const {id,name, onEditBefore, onDel} = this.props;
 		
 		return (
 			<li key={id}>{name}
 				&nbsp;
-				<a onClick={(e) => this.edit()}>改</a>
+				<a title="继承回调" onClick={(e) => onEditBefore()}>改</a>
 				&nbsp;
-				<a onClick={() => this.list_remove_one(id) }>删</a>
+				<a title="继承 actions 方法" onClick={() => onDel(id) }>删</a>
 			</li>
 		)
 	}

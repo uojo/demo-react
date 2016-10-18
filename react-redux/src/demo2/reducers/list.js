@@ -1,7 +1,5 @@
 import {extend} from "jquery"
 import * as Actions from '../actions/actions'
-import { routerStateReducer as router } from 'redux-router'
-import { combineReducers } from 'redux'
 
 // console.log( extend );
 // reducer就是个function,名字随便你起，功能就是在action触发后，返回一个新的state(就是个对象)
@@ -45,8 +43,8 @@ const initD = {
 	}
 };
 
-function fn1(state=initD, action){
-	console.info( "0.reducer.js", state, action );
+export default function fn1(state=initD, action){
+	console.info( "0.reducer.js~list", state, action );
 	let _state;
 	
 	switch (action.type) {
@@ -138,12 +136,12 @@ function fn1(state=initD, action){
 				}
 			});
 		
-		case Actions.S_item_saveBefore:
+		/* case Actions.S_item_saveBefore:
 			return extend(true, {}, state,{
 				edit:{
 					step:"send"
 				}
-			});
+			}); */
 		
 		case Actions.S_item_saveAfter:
 			_state = extend( true, {}, state, {
@@ -207,10 +205,3 @@ function fn1(state=initD, action){
 	};
 	
 };
-
-const rootReducer = combineReducers({
-  fn1,
-  router
-})
-
-export default rootReducer
