@@ -1,5 +1,5 @@
 import {extend} from "jquery"
-import * as Actions from '../actions/actions'
+import * as Actions from '../actions/list'
 
 // console.log( extend );
 // reducer就是个function,名字随便你起，功能就是在action触发后，返回一个新的state(就是个对象)
@@ -44,7 +44,7 @@ const initD = {
 };
 
 export default function fn1(state=initD, action){
-	console.info( "0.reducer.js~list", state, action );
+	// console.info( "2/3~0.reducer.js~list", state, action );
 	let _state;
 	
 	switch (action.type) {
@@ -136,13 +136,6 @@ export default function fn1(state=initD, action){
 				}
 			});
 		
-		/* case Actions.S_item_saveBefore:
-			return extend(true, {}, state,{
-				edit:{
-					step:"send"
-				}
-			}); */
-		
 		case Actions.S_item_saveAfter:
 			_state = extend( true, {}, state, {
 				edit:{
@@ -158,23 +151,11 @@ export default function fn1(state=initD, action){
 			
 			return _state;
 		
-		case Actions.Status_listAdd_request:
-			return extend(true, {}, state,{
-				add:{
-					step:"loading",
-					name:action.name
-				}
-			});
-		
 		case Actions.Status_listAdd_complete:
 			return extend(true, {}, state,{
-				add:{
-					step:"complete",
-					id:action.id
-				},
 				list:{
 					items:[
-						{id:action.id, name:state.add.name},
+						action.payload,
 						...state.list.items
 					]
 				}

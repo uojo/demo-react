@@ -48,10 +48,11 @@ class App extends Component {
 			
 		}
 		
-		if( add.step == "loading" ){
+		// 添加：触发 request
+		/* if( add.step == "loading" ){
 			actions.xhr_add_request({name:add.name})
 			
-		}
+		} */
 		
 		if( del.step == "remove" ){
 			actions.it_del_request(del);
@@ -80,8 +81,8 @@ class App extends Component {
 	
 	item_edit_save(pd) {
 		// 更新 store
-		// this.props.dispatch( Actions.ui_item_save(pd) ); //写法 1
-		this.props.actions.ui_item_save(pd); //写法 2
+		// this.props.dispatch( Actions.item_edit_save(pd) ); //写法 1
+		this.props.actions.item_edit_save(pd); //写法 2
 		
 		// 改变当前组件 UI
 		pd.step="send";
@@ -135,7 +136,7 @@ class App extends Component {
 		console.debug( "6.app.js~render 更新组件视图", this.props );
 		
 		// 来自继承
-		const {children, actions, da1:{add, list, logs} } = this.props;
+		const {children, actions, da1:{list, logs} } = this.props;
 		
 		// 自己的 UI 属性
 		const {itemCtrl, edit} = this.state;

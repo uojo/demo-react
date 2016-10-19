@@ -12,7 +12,7 @@ const initD = {
 }
 
 export default function fn1(state=initD, action){
-	console.info( "0.reducer.js~r2", state, action );
+	// console.info( "0.reducer.js~r2", state, action );
 	
 	switch (action.type) {
 		

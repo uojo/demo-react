@@ -39,7 +39,7 @@ export function pageBean_go(data){
 	}
 }
 
-// xhr 准备 
+// xhr 准备刷新列表
 export function xhr_list_f5(data){
 	
 	return dispatch => {
@@ -51,7 +51,7 @@ export function xhr_list_f5(data){
 	
 }
 
-// xhr 开始
+// xhr 获取列表数据
 export function xhr_list_get(data){
 	// console.debug("a.actions.js~xhr_list_get", data);
 	// console.debug("JSON", JSON.stringify({a:1,b:2}), JSON);
@@ -87,7 +87,7 @@ export function xhr_list_get(data){
 }
 
 // 保存编辑
-export function ui_item_save(data){
+export function item_edit_save(data){
 	
 	return (dispatch) => {
 		

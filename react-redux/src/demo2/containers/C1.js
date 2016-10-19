@@ -32,7 +32,8 @@ class App extends Component {
 		return (
 			<div>
 				子容器-1：受 routes 触发
-				<p> <a onClick={()=>this.props.as2()}> connect第二个参数（直接是actions的子方法） </a> </p>
+				<p> <a onClick={()=>this.props.as2()}> 执行 action </a> ：connect第二个参数可以是对象或函数</p>
+				<p> <a onClick={()=>{}}>跳转路由</a> </p>
 			</div>
 		)
 	};

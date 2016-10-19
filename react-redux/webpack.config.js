@@ -6,7 +6,12 @@ module.exports = {
 		vendors: ['react','redux'],
         // app:path.join(__dirname, 'src'),
         // demo1:"./src/demo1",
-        demo2:[
+        demo0:[
+		// "webpack-dev-server/client?http://127.0.0.1:4000/",
+		"webpack/hot/dev-server",
+		"./src/demo0"
+		],
+		demo2:[
 		// "webpack-dev-server/client?http://127.0.0.1:4000/",
 		"webpack/hot/dev-server",
 		"./src/demo2/index"
