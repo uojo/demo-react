@@ -43,6 +43,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	// console.warn("[1]~5.容器2~action.*=>props 将action的所有方法绑定到 props", As21, dispatch);
+
 	return {
 		actions: bindActionCreators(As21, dispatch)
 	}
