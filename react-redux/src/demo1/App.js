@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import * as action from './actions'
 import { Router, Route, IndexRoute, Redirect, IndexRedirect, hashHistory, Link, browserHistory, IndexLink } from 'react-router';
 
-require("../common/base.css");
+require("../common/demo.css");
 
 // 默认跳转
 // browserHistory.push("news/list")

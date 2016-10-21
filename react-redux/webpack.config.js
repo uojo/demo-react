@@ -9,12 +9,22 @@ module.exports = {
         demo0:[
 		// "webpack-dev-server/client?http://127.0.0.1:4000/",
 		"webpack/hot/dev-server",
-		"./src/demo0"
+		"./src/demo0/index"
+		],
+		demo1:[
+		// "webpack-dev-server/client?http://127.0.0.1:4000/",
+		"webpack/hot/dev-server",
+		"./src/demo1/index"
 		],
 		demo2:[
 		// "webpack-dev-server/client?http://127.0.0.1:4000/",
 		"webpack/hot/dev-server",
 		"./src/demo2/index"
+		],
+		demo3:[
+		// "webpack-dev-server/client?http://127.0.0.1:4000/",
+		"webpack/hot/dev-server",
+		"./src/demo3/index"
 		],
         // demo3:"./src/demo3",
         
