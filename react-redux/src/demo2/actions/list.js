@@ -82,7 +82,7 @@ export function xhr_list_get(data){
 				pageBean:json.pageBean
 			});
 		});
-
+		
 	}
 }
 

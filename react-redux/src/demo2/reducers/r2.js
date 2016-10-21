@@ -22,7 +22,6 @@ export default function fn1(state=initD, action){
 				count:++state.count
 			});
 			
-			
 		case '@@redux/INIT':
 		default:
 			return state;

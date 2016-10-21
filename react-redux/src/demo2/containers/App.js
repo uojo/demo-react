@@ -32,15 +32,15 @@ class App extends Component {
 	
 	//初始化渲染后触发，只执行一次
 	componentDidMount() {
-		console.warn('[1]~lifecycle.初始化渲染后触发');
+		console.warn('lifecycle[1].初始化渲染后触发');
 		
 		this.props.actions.xhr_list_get();
 	}
 	
 	//每次接受新的props触发
 	componentWillReceiveProps(nextProps) {
-		console.warn('lifecycle.每次接受新的props触发',nextProps);
-		const { actions, da1:{list, add, del, edit} } = nextProps;
+		console.warn('lifecycle[>1].每次接受新的props触发',nextProps);
+		const { actions, list, add, del, edit } = nextProps;
 		
 		// 请求列表数据-start
 		if( list.step == "send" ){
@@ -136,7 +136,7 @@ class App extends Component {
 		console.debug( "6.app.js~render 更新组件视图", this.props );
 		
 		// 来自继承
-		const {children, actions, da1:{list, logs} } = this.props;
+		const {children, actions, list, logs } = this.props;
 		
 		// 自己的 UI 属性
 		const {itemCtrl, edit} = this.state;
@@ -178,18 +178,18 @@ class App extends Component {
 
 //将reducers的return值注册到react的 props上
 function mapStateToProps(state) {
-	console.log( "4.app.js~reducers->state=>props 将reducers的return值注册到react的 props", state );
-	const { da1 } = state;
+	console.log( "4.connect[>0]~reducers->state=>props 将reducers的return值注册到react的 props", state );
+	const { list, add, del, edit, logs } = state.da1;
 	
 	return {
-		da1
+		list, add, del, edit, logs
 	};
 }
 
 //将action的所有方法绑定到props上
 function mapDispatchToProps(dispatch) {
 	let actions = bindActionCreators(Actions, dispatch);
-	console.warn("[1]~5.app.js~action.*=>props 将action的所有方法绑定到 props", actions);
+	console.warn("connect[1]~action.*=>props 将action的所有方法绑定到 props", actions);
 	return {
 		actions
 	};

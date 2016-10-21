@@ -2,13 +2,15 @@ import * as As from '../actions/list'
 import fetch from 'isomorphic-fetch'
 import {extend, param} from "jquery"
 
-const request_add = (action,next) => {
+const request_add = (action, next) => {
 	
 	let pd = {
 		name:action.name
 	};
 	console.log(2,pd);
 	
+	
+	// fetch 啥都没返回
 	return fetch("http://assets.dxycdn.com/docs/files/add.php",{
 		method:"POST",
 		// body: JSON.stringify(data),
@@ -35,19 +37,27 @@ const request_add = (action,next) => {
 			});
 		}
 	});
+	
 }
 
 export default store => next => action => {
-	console.warn('1/3.dispatching', action);
+	console.log('%c1/3.dispatching:api', "color:green", action);
 	
+	let t1;
 	// 添加
 	if( action.type == As.Status_listAdd_request ){
-		
-		return request_add(action,next);
+		// 返回异步的函数
+		t1 = request_add(action,next);
 		
 	}else{
-		
-		return next(action);
+		// 返回action对象
+		t1 = next(action);
 	}
 	
+	// console.info(action.type,typeof t1);
+	return t1;
+	
 }
+
+
+
