@@ -5,3 +5,6 @@ li{ line-height:1.6; font-size:15px;}
 .mt10 { margin-top:10px; }
 .bg1 { background:#eee; }
 .red { color:red; }
+
+.cpbox { background:#eee; margin:10px; padding:10px; }
+.cpbox .cpbox{ background:#ccc; }

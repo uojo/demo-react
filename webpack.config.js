@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var fs = require('fs');
 
-var entiresPath = path.resolve(__dirname, 'src');
+var entiresPath = path.resolve(__dirname, 'examples');
 var entryList = {
     vendors: ['react'],
 };
