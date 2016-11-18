@@ -3,14 +3,20 @@ import { Router, hashHistory } from 'react-router';
 
 import C1 from './C1'
 import C2 from './C2'
+import C21 from './C21'
 
-
-const routes = {
+const routes1 = {
   path: '/',
   component: C1,
   // indexRoute: { component: Dashboard },
   childRoutes: [
-    { path: '/c2', component: C2 },
+    { 
+		path: 'c2',
+		component: C2,
+		childRoutes:[
+			{path:"c21", component:C21}
+		]
+	},
     /* {
       path: 'c2',
       component: C2,
@@ -28,7 +34,18 @@ const routes = {
   ]
 }
 
-
+const routes2 = [
+	{path:'/', component:C1},
+	{
+		path:'/c2',
+		indexRoute:{
+			component:C2
+		},
+		childRoutes:[
+			{path:"c21", component:C21}
+		]
+	},
+]
 
 class Cp1 extends Component {
 	
@@ -45,8 +62,11 @@ class Cp1 extends Component {
 		
 		return (
 			<div className="cpbox">
-				<button onClick={this.fn1}>btn1</button>
-				<Router history={hashHistory} routes={routes} />
+				<b>路由2：通过配置对象申明</b>
+				<p>
+					<button onClick={this.fn1}>btn1</button>
+				</p>
+				<Router history={hashHistory} routes={routes2} />
 			</div>
 		)
 	}

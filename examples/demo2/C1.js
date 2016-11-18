@@ -12,7 +12,7 @@ class Cp1 extends Component {
 		console.log("routes", routes);
 		
 		// 跳转
-		history.push({
+		context.router.push({
 			pathname:"c2",
 			query:{q1:1},
 			state:{s1:1}
@@ -25,12 +25,16 @@ class Cp1 extends Component {
 
 		return (
 			<div className="cpbox">
-				组件1
-				<p><button onClick={this.fn1.bind(this)}>to 组件2</button></p>
+				<b>组件1</b>
+				<p><button onClick={this.fn1.bind(this)}>push 组件2</button></p>
 			</div>
 		)
 		
 	}
+}
+
+Cp1.contextTypes = {
+	router:PropTypes.object
 }
 
 module.exports = Cp1;
