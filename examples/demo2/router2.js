@@ -4,6 +4,8 @@ import { Router, hashHistory } from 'react-router';
 import C1 from './C1'
 import C2 from './C2'
 import C21 from './C21'
+import C3 from './C3'
+import C31 from './C31'
 
 const routes1 = {
   path: '/',
@@ -43,6 +45,12 @@ const routes2 = [
 		},
 		childRoutes:[
 			{path:"c21", component:C21}
+		]
+	},
+	{
+		path:'/c3', component:C3,
+		childRoutes:[
+			{path:"c31", component:C31}
 		]
 	},
 ]

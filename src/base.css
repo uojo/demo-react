@@ -1,10 +1,18 @@
 a{ color:#09f; text-decoration:none; cursor:pointer; }
 li{ line-height:1.6; font-size:15px;}
 
+.fl{ float:left; }
+.fr{ float:right; }
+
 .hide{ display:none; }
 .mt10 { margin-top:10px; }
 .bg1 { background:#eee; }
 .red { color:red; }
 
-.cpbox { background:#eee; margin:10px; padding:10px; }
-.cpbox .cpbox{ background:#ccc; }
+.cpbox { background:#eee; margin:10px; padding:10px; border:1px solid #999; font-family:Helvetica arial; color:#555; letter-spacing:1px; }
+.cpbox .cpbox{ background:#ddd; }
+.cpbox .cpbox .cpbox{ background:#ccc; }
+
+.ttjson { width:95%; height:180px; vertical-align:top;}
+.tbarea {width:100%;}
+.tbarea td{ vertical-align:top;}

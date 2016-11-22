@@ -20,12 +20,12 @@ class Cp1 extends Component {
 	}
 	
 	render(){
-	
-		console.log("C1",this);
+		
+		// console.log("C1",this);
 
 		return (
 			<div className="cpbox">
-				<b>组件1</b>
+				<b>组件1（假设：页面A）</b>
 				<p><button onClick={this.fn1.bind(this)}>push 组件2</button></p>
 			</div>
 		)
