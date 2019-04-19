@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 var T1 = React.createClass({
   render: function () {
@@ -6,8 +6,8 @@ var T1 = React.createClass({
       <div className="productBox">
         组件-2
       </div>
-    );
+    )
   }
-});
+})
 
-module.exports = T1;
+module.exports = T1

@@ -11,7 +11,7 @@ class Cp1 extends Component {
 		this.context.router.push({
 			pathname:"c3/c31",
 			query:Object.assign({},query,{q2:2}),
-			state:Object.assign({},state,{s1:15}),
+			state:Object.assign({},state,{s1:15,s2:{a1:1}}),
 		});
 	}
 
